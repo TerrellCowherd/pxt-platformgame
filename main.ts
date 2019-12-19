@@ -162,7 +162,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     music.pewPew.play()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(false)
+    game.over(false, effects.dissolve)
 })
 let projectile: Sprite = null
 let badguy: Sprite = null
@@ -341,6 +341,6 @@ forever(function () {
     // velocity above 280, aka when they miss a
     // trampoline.
     if (roboboy.vy > 280) {
-        game.over(false)
+        game.over(false, effects.dissolve)
     }
 })
