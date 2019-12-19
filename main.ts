@@ -80,6 +80,8 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . . f f f f . . . . . 
 `)
     roboboy.vy = 120
+    // adds an effect to give the action a bit more
+    // 'oomph'.
     roboboy.startEffect(effects.fire)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherSprite) {
@@ -106,7 +108,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
 . . . . f 6 6 f . . . . . . . . 
 . . . . . f f f . . . . . . . . 
 `)
+    // removes the fire effect when the player bounces off
+    // of a trampoline.
     effects.clearParticles(roboboy)
+    // plays a sound effect.
     music.baDing.play()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -133,6 +138,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . f 6 f f . . . . . . . . 
 . . . . . f f f . . . . . . . . 
 `)
+    // allows the player to shoot a projectile.
     projectile = sprites.createProjectileFromSprite(img`
 . . . . . . . . 
 . . . . . . . . 
@@ -205,25 +211,83 @@ f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f
 `, SpriteKind.Object)
 scene.cameraFollowSprite(roboboy)
 game.splash("Press down to fast fall.", "Press A to shoot.")
-game.splash("Watch out for the ghosts.", "Get 100 points to win.")
+game.splash("Watch out for the enemies.", "Get 100 points to win.")
 badguy = sprites.create(img`
-. . . . . f f f f f f . . . . . 
-. . . f f 3 1 1 1 1 3 f . . . . 
-. . f 3 1 1 1 1 1 1 f 3 f . . . 
-. f 3 f 1 1 1 1 1 f 1 1 f . . . 
-. f 1 1 f 1 1 1 f 1 1 1 f . . . 
-. f f f f f 1 f f f f f f . . . 
-. f 1 1 1 1 1 1 1 1 1 1 f . . . 
-. f f 1 1 1 1 1 1 1 f 1 f . . . 
-. f 1 f f f f f f f 1 1 f . . . 
-. f f 3 f 3 3 3 f 1 1 1 f . . f 
-. f f 3 3 3 3 f 1 1 1 1 3 f f f 
-. f 3 f f f f 1 1 1 1 1 1 1 3 f 
-. . f 3 1 1 1 1 1 1 1 1 1 1 1 f 
-. . . f 3 1 1 1 1 1 1 1 1 1 f . 
-. . . . f f 3 1 1 1 1 1 f f . . 
-. . . . . . f f f f f f . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f . . . . . . . . 
+. . . . . . . f . . . . . . . . 
+. . . . . . . f . . . . . . . . 
+. . . . . . . f . . . . . . . . 
+. . . . f f f f f f f . . . . . 
+. . . f 4 4 5 5 5 5 f . . . . . 
+. . . f f f f f f f f . . . . . 
+. . . f 5 6 7 7 7 6 f . . . . . 
+. . . f 5 f f 7 7 f f . . . . . 
+. . . f 4 7 7 7 7 7 f . . . . . 
+. . . . f 6 7 7 7 6 f . . . . . 
+. . . . . f f f f f . . . . . . 
 `, SpriteKind.Enemy)
+// adds an animation to the enemy.
+animation.runImageAnimation(
+badguy,
+[img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . 1 1 . . . . 
+. . . . . . . . . . . . 1 1 . . 
+. . . 1 . . . . f . . . . 1 . . 
+. . . 1 1 . . . f . . . . . . . 
+. . . . . 1 1 . f . . . . . . . 
+. . . . . . . . f . . . . . . . 
+. . . . . . f f f f f . . . . . 
+. . . . . f 6 7 7 7 6 f . . . . 
+. . . . f 5 7 5 7 7 7 f . . . . 
+. . . . f 5 7 5 5 7 5 f . . . . 
+. . . . f 4 7 7 7 7 7 f . . . . 
+. . . . . f 6 7 7 7 6 f . . . . 
+. . . . . . f f f f f . . . . . 
+`,img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . 1 1 1 1 . . . . . . 
+. . . . . 1 . . . . . . . . . . 
+. . . . . . . . f . . . . . . . 
+. . . . . . . . f . . 1 . . . . 
+. . . . . . . 1 f 1 1 . . . . . 
+. . . . . . . . f . . . . . . . 
+. . . . . . f f f f f . . . . . 
+. . . . . f 6 7 7 7 6 f . . . . 
+. . . . f 5 7 2 7 7 7 f . . . . 
+. . . . f 5 7 2 2 7 2 f . . . . 
+. . . . f 4 7 7 7 7 7 f . . . . 
+. . . . . f 6 7 7 7 6 f . . . . 
+. . . . . . f f f f f . . . . . 
+`,img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . 1 1 . . . . . . . . . 
+. . . 1 1 . . . . . . . . . . . 
+. . . 1 . . . . f . . . . 1 . . 
+. . . . . . . . f . . . 1 1 . . 
+. . . . . . . . f . 1 1 . . . . 
+. . . . . . . . f . . . . . . . 
+. . . . . . f f f f f . . . . . 
+. . . . . f 6 7 7 7 6 f . . . . 
+. . . . f 5 7 4 7 7 7 f . . . . 
+. . . . f 5 7 4 4 7 4 f . . . . 
+. . . . f 4 7 7 7 7 7 f . . . . 
+. . . . . f 6 7 7 7 6 f . . . . 
+. . . . . . f f f f f . . . . . 
+`],
+50,
+true
+)
 badguy.setPosition(76, 220)
 badguy.follow(roboboy, 90)
 projectile = sprites.create(img`
@@ -248,6 +312,8 @@ projectile = sprites.create(img`
 `, SpriteKind.Projectile)
 projectile.setPosition(360, 121)
 forever(function () {
+    // this makes it so that if the player reaches 100
+    // points, they will win the game.
     if (info.score() == 100) {
         game.over(true)
     }
@@ -271,6 +337,9 @@ forever(function () {
 . . . . . f f f . . . . . . . . 
 `)
     }
+    // this makes the player lose the game if they reach a
+    // velocity above 280, aka when they miss a
+    // trampoline.
     if (roboboy.vy > 280) {
         game.over(false)
     }
