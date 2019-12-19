@@ -162,7 +162,8 @@ let projectile: Sprite = null
 let badguy: Sprite = null
 let trampoline: Sprite = null
 let roboboy: Sprite = null
-scene.setBackgroundColor(9)
+scene.setBackgroundColor(12)
+effects.starField.startScreenEffect()
 roboboy = sprites.create(img`
 . . . . . . f f f f f . . . . . 
 . . . . . f 6 1 f 1 f f . . . . 
@@ -202,27 +203,9 @@ f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f
 f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
 . f f f f f f f f f f f f f f . 
 `, SpriteKind.Object)
-let trampolineDouble = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. f f f f f f f f f f f f f f . 
-f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f 
-. f f f f f f f f f f f f f f . 
-`, SpriteKind.Object)
 scene.cameraFollowSprite(roboboy)
 game.splash("Press down to fast fall.", "Press A to shoot.")
-game.splash("Watch out for the ghosts.")
+game.splash("Watch out for the ghosts.", "Get 100 points to win.")
 badguy = sprites.create(img`
 . . . . . f f f f f f . . . . . 
 . . . f f 3 1 1 1 1 3 f . . . . 
@@ -264,6 +247,31 @@ projectile = sprites.create(img`
 . . f . . . . . 
 `, SpriteKind.Projectile)
 projectile.setPosition(360, 121)
-if (info.score() == 50) {
-    game.over(true)
-}
+forever(function () {
+    if (info.score() == 100) {
+        game.over(true)
+    }
+    if (roboboy.vy > 200) {
+        roboboy.setImage(img`
+. . . . . . f f f f f . . . . . 
+. . . . . f 6 1 1 1 6 f . . . . 
+. . . . f 5 1 1 1 1 1 f . . . . 
+. . . . f 5 1 f 1 1 f f . . . . 
+. . f f f 4 1 1 1 1 1 f f f . . 
+. f 6 6 6 f 6 1 1 1 6 f 6 6 f . 
+. f 6 6 f 1 f f f f f f 6 6 f . 
+. . f f . f 1 1 1 f . . f f . . 
+. . . . . f 1 1 1 6 f . . . . . 
+. . . . . f 6 6 6 1 f . . . . . 
+. . . . . f 1 1 1 f f f . . . . 
+. . . . . f f f f f 6 6 f . . . 
+. . . . . f 6 6 f f 6 6 f . . . 
+. . . . f 6 6 6 f f 6 6 6 f . . 
+. . . . f 6 6 f . . f f f f . . 
+. . . . . f f f . . . . . . . . 
+`)
+    }
+    if (roboboy.vy > 280) {
+        game.over(false)
+    }
+})
