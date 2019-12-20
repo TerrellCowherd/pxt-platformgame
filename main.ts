@@ -211,7 +211,7 @@ f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f
 `, SpriteKind.Object)
 scene.cameraFollowSprite(roboboy)
 game.splash("Press down to fast fall.", "Press A to shoot.")
-game.splash("Watch out for the enemies.", "Get 100 points to win.")
+game.splash("Watch out for the enemies.", "Get 50 points to win.")
 badguy = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -314,7 +314,7 @@ projectile.setPosition(360, 121)
 forever(function () {
     // this makes it so that if the player reaches 100
     // points, they will win the game.
-    if (info.score() == 100) {
+    if (info.score() == 50) {
         game.over(true)
     }
     if (roboboy.vy > 200) {
