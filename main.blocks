@@ -155,7 +155,7 @@ f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f
 . . . . . . . . . . . . . . . . 
 `</field></shadow><block type="screen_image_picker" id="SXNH1MR#W9wN4Li8b6WM"><field name="img">img`
 . . . . . . f f f f f . . . . . 
-. . . . . f 6 1 1 1 1 f . . . . 
+. . . . . f 6 1 1 1 6 f . . . . 
 . . f f f 5 1 1 1 1 1 f f f . . 
 . f 6 6 f 5 1 1 f 1 f f 6 6 f . 
 . f 6 6 f 4 1 1 f 1 f f 6 6 f . 
@@ -187,7 +187,7 @@ f 5 5 5 5 5 5 5 5 5 5 5 5 5 5 f
 . . . . f f 6 f f f . . . . . . 
 . . . . f 6 f f . . . . . . . . 
 . . . . . f f f . . . . . . . . 
-`</field></shadow></value><next><block type="variables_set" id="kLs,*hcRj6yF)56$#wAg"><field name="VAR" id="#-;hVqQZKkCCihvo#9]A">projectile</field><comment id="undefined" pinned="true" h="89.90533447265625" w="250.61053466796875">allows the player to shoot a projectile.</comment><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreateprojectilefromsprite" id="XL@1)A=L*X;5cDtoePC_"><value name="img"><shadow type="screen_image_picker" id="]C78P;FC|BK1HD:lVby:"><field name="img">img`
+`</field></shadow></value><next><block type="variables_set" id="kLs,*hcRj6yF)56$#wAg"><field name="VAR" id="#-;hVqQZKkCCihvo#9]A">projectile</field><comment id="undefined" pinned="true" h="89" w="250">allows the player to shoot a projectile.</comment><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreateprojectilefromsprite" id="XL@1)A=L*X;5cDtoePC_"><value name="img"><shadow type="screen_image_picker" id="]C78P;FC|BK1HD:lVby:"><field name="img">img`
 . . . . . . . . 
 . . . . . . . . 
 . . . . . . . . 

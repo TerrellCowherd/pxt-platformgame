@@ -63,7 +63,7 @@ namespace myTiles {
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     roboboy.setImage(img`
 . . . . . . f f f f f . . . . . 
-. . . . . f 6 1 1 1 1 f . . . . 
+. . . . . f 6 1 1 1 6 f . . . . 
 . . f f f 5 1 1 1 1 1 f f f . . 
 . f 6 6 f 5 1 1 f 1 f f 6 6 f . 
 . f 6 6 f 4 1 1 f 1 f f 6 6 f . 
