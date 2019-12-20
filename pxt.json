@@ -2,7 +2,8 @@
     "name": "platformGame",
     "dependencies": {
         "device": "*",
-        "animation": "*"
+        "animation": "*",
+        "controller": "*"
     },
     "description": "",
     "files": [

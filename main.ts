@@ -116,7 +116,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Object, function (sprite, otherS
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     badguy.x += Math.randomRange(-100, 100)
-    badguy.y += 59
+    badguy.y += 65
     projectile.destroy()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -336,6 +336,8 @@ forever(function () {
 . . . . f 6 6 f . . f f f f . . 
 . . . . . f f f . . . . . . . . 
 `)
+        roboboy.startEffect(effects.fountain)
+        scene.cameraShake(2, 500)
     }
     // this makes the player lose the game if they reach a
     // velocity above 280, aka when they miss a
